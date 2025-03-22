@@ -1,8 +1,9 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Flex, Text } from "@radix-ui/themes";
+import { Box, Callout, Flex, Text } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -22,7 +23,7 @@ const formSchema = z.object({
     .min(1, "This field has to be filled.")
     .email("This is not a valid email."),
 
-  phoneNumber: z.string().min(1, "Mobile number is reqired"),
+  phoneNumber: z.string().min(1, "Mobile number is required"),
 
   serviceNeed: z
     .string()
@@ -39,6 +40,7 @@ const formSchema = z.object({
 
 const AddCustomer = () => {
   const router = useRouter();
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
@@ -52,13 +54,24 @@ const AddCustomer = () => {
       await axios.post("/api/customer", data);
       router.push("/users");
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        const errorMessage =
+          error.response?.data?.message || "An error occurred";
+        setError(errorMessage);
+      } else {
+        setError("An unexpected error occurred.");
+      }
     }
   });
 
   return (
     <form className="p-8" onSubmit={onSubmit}>
       <div className="bg-[#4D55CC] rounded-lg p-5">
+        {error && (
+          <Callout.Root color="red" ml={"-2"} mb={"2"}>
+            <Callout.Text>{error}</Callout.Text>
+          </Callout.Root>
+        )}
         <h1 className="font-bold text-white">Add Customer</h1>
 
         {/* First Name and Last Name */}
