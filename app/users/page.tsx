@@ -2,15 +2,24 @@ import { prisma } from "@/prisma/client";
 import { Box, Flex, Table } from "@radix-ui/themes";
 import React from "react";
 import PageTitle from "../components/PageTitle";
-
 import { HiUsers } from "react-icons/hi";
 import StatusBadge from "./StatusBadge";
 import ServiceNeedIcon from "./ServiceNeedIcon";
 import FilterByServiceNeed from "./FilterByServiceNeed";
 import FilterByStatus from "./FilterByStatus";
 
-const UsersPage = async () => {
-  const customers = await prisma.customer.findMany();
+interface Props {
+  searchParams: Promise<{ status: string; serviceNeed: string }>;
+}
+
+const UsersPage = async ({ searchParams }: Props) => {
+  const { status, serviceNeed } = await searchParams;
+  const customers = await prisma.customer.findMany({
+    where: {
+      seviceStatus: status || undefined,
+      serviceNeed: serviceNeed || undefined,
+    },
+  });
   return (
     <>
       <Box p={"4"}>

@@ -15,7 +15,9 @@ const FilterByStatus = () => {
   ];
   return (
     <Select.Root
+      defaultValue={searchParams.get("status") || "None"}
       onValueChange={(status) => {
+        if (status === "None") status = "";
         const params = new URLSearchParams(searchParams);
         params.set("status", status);
         rouer.push("?" + params.toString());

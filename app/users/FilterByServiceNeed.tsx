@@ -13,7 +13,9 @@ const FilterByServiceNeed = () => {
   ];
   return (
     <Select.Root
+      defaultValue={searchParams.get("serviceNeed") || "None"}
       onValueChange={(serviceNeed) => {
+        if (serviceNeed === "None") serviceNeed = "";
         const params = new URLSearchParams(searchParams);
         params.set("serviceNeed", serviceNeed);
         router.push("?" + params.toString());
