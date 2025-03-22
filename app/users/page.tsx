@@ -7,6 +7,7 @@ import { HiUsers } from "react-icons/hi";
 import StatusBadge from "./StatusBadge";
 import ServiceNeedIcon from "./ServiceNeedIcon";
 import FilterByServiceNeed from "./FilterByServiceNeed";
+import FilterByStatus from "./FilterByStatus";
 
 const UsersPage = async () => {
   const customers = await prisma.customer.findMany();
@@ -19,9 +20,10 @@ const UsersPage = async () => {
         </Flex>
       </Box>
 
-      <Box p={"4"}>
+      <Flex gap={"5"} p={"4"}>
         <FilterByServiceNeed />
-      </Box>
+        <FilterByStatus />
+      </Flex>
       <Table.Root
         variant="surface"
         m={"3"}
