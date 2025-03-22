@@ -5,38 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const formSchema = z.object({
-  firstName: z
-    .string()
-    .min(1, "First name is required")
-    .max(30, "First name must be less than 30 characters"),
-
-  lastName: z
-    .string()
-    .min(1, "Last name is required")
-    .max(30, "Last name must be less than 30 characters"),
-
-  email: z
-    .string()
-    .min(1, "This field has to be filled.")
-    .email("This is not a valid email."),
-
-  phoneNumber: z.string().min(1, "Mobile number is required"),
-
-  serviceNeed: z
-    .string()
-    .min(1, "Service need is required")
-    .max(100, "Must be less than 100 characters"),
-
-  serviceDetails: z.string().min(1, "Service details are required"),
-
-  seviceStatus: z
-    .string()
-    .min(1, "Service status is required")
-    .max(20, "Must be less than 20 characters"),
-});
+import { formSchema } from "./formSchema";
 
 const AddCustomer = () => {
   const router = useRouter();
@@ -54,7 +23,7 @@ const AddCustomer = () => {
     try {
       setLoading(true);
       await axios.post("/api/customer", data);
-      router.push("/users");
+      router.push("/customers");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setLoading(false);
