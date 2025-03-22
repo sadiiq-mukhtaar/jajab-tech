@@ -8,6 +8,7 @@ import ServiceNeedIcon from "./ServiceNeedIcon";
 import FilterByServiceNeed from "./FilterByServiceNeed";
 import FilterByStatus from "./FilterByStatus";
 import CustomerActions from "./CustomerActions";
+import Link from "next/link";
 
 interface Props {
   searchParams: Promise<{ status: string; serviceNeed: string }>;
@@ -55,7 +56,10 @@ const UsersPage = async ({ searchParams }: Props) => {
           {customers.map((customer) => (
             <Table.Row key={customer.id}>
               <Table.Cell>
-                {`${customer.firstName} ${customer.lastName}`}
+                <Link href={`/customers/${customer.id}`}>
+                  {" "}
+                  {`${customer.firstName} ${customer.lastName}`}
+                </Link>
                 <div className="md:hidden mt-2">
                   {" "}
                   <StatusBadge status={customer.seviceStatus} />
