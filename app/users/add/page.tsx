@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Callout, Flex, Text } from "@radix-ui/themes";
+import { Box, Callout, Flex, Spinner, Text } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -41,6 +41,7 @@ const formSchema = z.object({
 const AddCustomer = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [isLaoding, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -51,14 +52,17 @@ const AddCustomer = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setLoading(true);
       await axios.post("/api/customer", data);
       router.push("/users");
     } catch (error) {
       if (axios.isAxiosError(error)) {
+        setLoading(false);
         const errorMessage =
           error.response?.data?.message || "An error occurred";
         setError(errorMessage);
       } else {
+        setLoading(false);
         setError("An unexpected error occurred.");
       }
     }
@@ -74,7 +78,6 @@ const AddCustomer = () => {
         )}
         <h1 className="font-bold text-white">Add Customer</h1>
 
-        {/* First Name and Last Name */}
         <Flex gap="5" wrap="wrap" mt="5">
           <Box className="flex-1 min-w-[200px]">
             <input
@@ -104,7 +107,6 @@ const AddCustomer = () => {
           </Box>
         </Flex>
 
-        {/* Email and Phone Number */}
         <Flex gap="5" wrap="wrap" mt="6">
           <Box className="flex-1 min-w-[200px]">
             <input
@@ -134,7 +136,6 @@ const AddCustomer = () => {
           </Box>
         </Flex>
 
-        {/* Service Need and Service Status */}
         <Flex gap="5" wrap="wrap" mt="6">
           <Box className="flex-1 min-w-[200px]">
             <input
@@ -164,7 +165,6 @@ const AddCustomer = () => {
           </Box>
         </Flex>
 
-        {/* Service Details and Submit Button */}
         <Flex gap="5" wrap="wrap" mt="6">
           <Box className="flex-1 min-w-[200px]">
             <textarea
@@ -183,7 +183,18 @@ const AddCustomer = () => {
               type="submit"
               className="bg-[#211C84] rounded-lg px-3 py-1 cursor-pointer text-white"
             >
-              Add Customer
+              {isLaoding && (
+                <Flex gap={"2"} align={"center"}>
+                  {" "}
+                  <Spinner />
+                  Add Customer
+                </Flex>
+              )}
+              {isLaoding || (
+                <Flex gap={"2"} align={"center"}>
+                  Add Customer
+                </Flex>
+              )}
             </button>
           </Box>
         </Flex>

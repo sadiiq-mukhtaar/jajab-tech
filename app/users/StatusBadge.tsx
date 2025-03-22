@@ -5,7 +5,7 @@ const StatusBadge = ({ status }: { status: string }) => {
   return (
     <div>
       {status === "OPEN" && <Badge color="red">{status}</Badge>}
-      {status === "CLOSE" && <Badge color="green">{status}</Badge>}
+      {status === "CLOSED" && <Badge color="green">{status}</Badge>}
       {status === "IN_PROGRESS" && <Badge color="violet">{status}</Badge>}
     </div>
   );
