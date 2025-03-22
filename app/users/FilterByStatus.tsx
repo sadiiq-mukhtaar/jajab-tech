@@ -11,7 +11,7 @@ const FilterByStatus = () => {
     { label: "None", value: "None" },
     { label: "Open", value: "OPEN" },
     { label: "In-progress", value: "IN_PROGRESS" },
-    { label: "Closed", value: "Closed" },
+    { label: "Closed", value: "CLOSED" },
   ];
   return (
     <Select.Root
