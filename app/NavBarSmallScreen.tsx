@@ -14,7 +14,7 @@ const NavBarSmallScreen = () => {
           <Link href="/dashboard">
             <MdDashboard className="text-xl" />
           </Link>
-          <Link href="/users">
+          <Link href="/customers">
             <LuUsersRound className="text-xl" />
           </Link>
           <Link href="/logout">

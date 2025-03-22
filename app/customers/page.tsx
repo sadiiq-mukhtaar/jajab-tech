@@ -7,6 +7,7 @@ import StatusBadge from "./StatusBadge";
 import ServiceNeedIcon from "./ServiceNeedIcon";
 import FilterByServiceNeed from "./FilterByServiceNeed";
 import FilterByStatus from "./FilterByStatus";
+import CustomerActions from "./CustomerActions";
 
 interface Props {
   searchParams: Promise<{ status: string; serviceNeed: string }>;
@@ -29,10 +30,10 @@ const UsersPage = async ({ searchParams }: Props) => {
         </Flex>
       </Box>
 
-      <Flex gap={"5"} p={"4"}>
-        <FilterByServiceNeed />
-        <FilterByStatus />
-      </Flex>
+      <Box>
+        <CustomerActions />
+      </Box>
+
       <Table.Root
         variant="surface"
         m={"3"}

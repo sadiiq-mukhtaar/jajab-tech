@@ -25,7 +25,7 @@ const NavBar = () => {
               </Link>
             </Flex>
             <Flex align={"center"} gap={"2"} className="font-semibold">
-              <HiUsers /> <Link href={"/users"}>Users</Link>
+              <HiUsers /> <Link href={"/customers"}>Customers</Link>
             </Flex>
           </Box>
         </Box>
