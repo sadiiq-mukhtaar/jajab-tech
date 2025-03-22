@@ -1,6 +1,8 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Flex, Text } from "@radix-ui/themes";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -36,6 +38,7 @@ const formSchema = z.object({
 });
 
 const AddCustomer = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -44,7 +47,14 @@ const AddCustomer = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await axios.post("/api/customer", data);
+      router.push("/users");
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   return (
     <form className="p-8" onSubmit={onSubmit}>
