@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 const CustomerActions = () => {
   const router = useRouter();
   return (
-    <Flex p={"5"} justify={"between"}>
+    <Flex p={"5"} justify={"between"} wrap={"wrap"} gapY={"4"} gapX={"5"}>
       <Flex gap={"5"}>
         <FilterByServiceNeed />
         <FilterByStatus />
