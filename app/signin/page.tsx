@@ -59,7 +59,7 @@ const SignPage = () => {
 
         <Text className="text-white">
           Don't have an account?{" "}
-          <Link href="#" className="underline ">
+          <Link href="/signup" className="underline ">
             Sign up for free
           </Link>
         </Text>
