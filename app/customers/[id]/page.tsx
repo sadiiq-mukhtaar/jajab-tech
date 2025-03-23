@@ -2,6 +2,7 @@ import { prisma } from "@/prisma/client";
 import { Box, Flex, Text, Button } from "@radix-ui/themes";
 import ServiceNeedIcon from "../ServiceNeedIcon";
 import StatusBadge from "../StatusBadge";
+import CustomerButtons from "./CustomerButtons";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -72,14 +73,7 @@ const CustomerDetailsPage = async ({ params }: Props) => {
           </Flex>
 
           {/* Edit and Delete Buttons */}
-          <Flex gap="3" mt="4">
-            <Button variant="solid" color="blue">
-              Edit
-            </Button>
-            <Button variant="solid" color="red">
-              Delete
-            </Button>
-          </Flex>
+          <CustomerButtons id={customer.id} />
         </Flex>
       </div>
     </Box>
