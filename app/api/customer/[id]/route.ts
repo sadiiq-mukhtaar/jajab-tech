@@ -1,4 +1,6 @@
+import authOptions from "@/app/auth/authOptions";
 import { prisma } from "@/prisma/client";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Props {
@@ -24,6 +26,18 @@ export const GET = async (req: NextRequest, { params }: Props) => {
 };
 
 export const PUT = async (req: NextRequest, { params }: Props) => {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return NextResponse.json(
+      {
+        message: "🔒 Unauthorized - Please sign in to access this resource",
+        solution:
+          "Try signing in at /login or contact support if you believe this is an error",
+      },
+      { status: 401 }
+    );
+  }
+
   const body = await req.json();
   const { id } = await params;
   console.log(id);
@@ -83,6 +97,18 @@ export const PUT = async (req: NextRequest, { params }: Props) => {
 };
 
 export const DELETE = async (req: NextRequest, { params }: Props) => {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return NextResponse.json(
+      {
+        message: "🔒 Unauthorized - Please sign in to access this resource",
+        solution:
+          "Try signing in at /login or contact support if you believe this is an error",
+      },
+      { status: 401 }
+    );
+  }
+
   const { id } = await params;
   const customer = await prisma.customer.findUnique({
     where: { id: parseInt(id) },

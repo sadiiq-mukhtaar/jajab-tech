@@ -1,4 +1,6 @@
+import authOptions from "@/app/auth/authOptions";
 import { prisma } from "@/prisma/client";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
@@ -14,6 +16,18 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const POST = async (req: NextRequest) => {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return NextResponse.json(
+      {
+        message: "🔒 Unauthorized - Please sign in to access this resource",
+        solution:
+          "Try signing in at /login or contact support if you believe this is an error",
+      },
+      { status: 401 }
+    );
+  }
+
   const body = await req.json();
 
   // Check if body is empty
