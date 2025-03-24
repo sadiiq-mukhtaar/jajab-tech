@@ -1,9 +1,7 @@
-import React from "react";
-import PageTitle from "../components/PageTitle";
-import { MdDashboard } from "react-icons/md";
+import { prisma } from "@/prisma/client";
 import { Box, Flex } from "@radix-ui/themes";
 import { LuUsersRound } from "react-icons/lu";
-import { prisma } from "@/prisma/client";
+import PageTitle from "../components/PageTitle";
 
 const DashboardPage = async () => {
   const customers = await prisma.customer.findMany();
@@ -12,10 +10,7 @@ const DashboardPage = async () => {
   });
   return (
     <Box p={"4"}>
-      <Flex align={"center"} gap={"2"}>
-        <MdDashboard />
-        <PageTitle title={"Dashboard"} />
-      </Flex>
+      <PageTitle title={"Dashboard"} />
 
       <div className="flex flex-wrap gap-4 mt-4 ">
         <Box className="flex-1 min-w-[150px] p-4  rounded-lg bg-[#4D55CC]">

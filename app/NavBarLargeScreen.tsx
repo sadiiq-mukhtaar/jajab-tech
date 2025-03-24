@@ -1,11 +1,15 @@
+"use client";
 import { Flex, Box, Heading } from "@radix-ui/themes";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { FiLogOut } from "react-icons/fi";
 import { HiUsers } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
+import Spinner from "./components/Spinner";
 
 const NavBar = () => {
+  const { data: ession, status } = useSession();
   return (
     <>
       <Flex
@@ -31,9 +35,17 @@ const NavBar = () => {
         </Box>
         <Flex align={"center"} gap={"2"} ml={"-7"}>
           <FiLogOut />{" "}
-          <Link href={"/users"} className="font-semibold">
-            Log Out
-          </Link>
+          {status === "authenticated" && (
+            <Link href={"/api/auth/signout"} className="font-semibold">
+              Sign Out
+            </Link>
+          )}
+          {status === "loading" && <Spinner />}
+          {status === "unauthenticated" && (
+            <Link href={"/api/auth/signout"} className="font-semibold">
+              Sign In
+            </Link>
+          )}
         </Flex>
       </Flex>
     </>

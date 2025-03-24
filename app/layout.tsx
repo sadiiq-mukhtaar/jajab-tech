@@ -5,6 +5,7 @@ import "@radix-ui/themes/styles.css";
 import { Grid, Theme } from "@radix-ui/themes";
 import NavBar from "./NavBarLargeScreen";
 import NavBarSmallScreen from "./NavBarSmallScreen";
+import AuthProvider from "./auth/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,20 +32,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#211C84]`}
       >
-        <Theme accentColor="indigo">
-          <div className="bg-[#211C84] min-h-screen text-white">
-            <div className="block md:hidden fixed top-0 w-full z-50">
-              <NavBarSmallScreen />
-            </div>
+        <AuthProvider>
+          <Theme accentColor="indigo">
+            <div className="bg-[#211C84] min-h-screen text-white">
+              <div className="block md:hidden fixed top-0 w-full z-50">
+                <NavBarSmallScreen />
+              </div>
 
-            <Grid columns={{ initial: "auto 1fr" }} gap="4">
-              <nav className="sticky top-0 h-screen hidden md:block">
-                <NavBar />
-              </nav>
-              <main className="mt-16 md:mt-0">{children}</main>
-            </Grid>
-          </div>
-        </Theme>
+              <Grid columns={{ initial: "auto 1fr" }} gap="4">
+                <nav className="sticky top-0 h-screen hidden md:block">
+                  <NavBar />
+                </nav>
+                <main className="mt-16 md:mt-0">{children}</main>
+              </Grid>
+            </div>
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   );

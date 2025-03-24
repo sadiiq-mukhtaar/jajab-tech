@@ -1,14 +1,10 @@
 import { prisma } from "@/prisma/client";
-import { Box, Flex, Table } from "@radix-ui/themes";
-import React from "react";
-import PageTitle from "../components/PageTitle";
-import { HiUsers } from "react-icons/hi";
-import StatusBadge from "./StatusBadge";
-import ServiceNeedIcon from "./ServiceNeedIcon";
-import FilterByServiceNeed from "./FilterByServiceNeed";
-import FilterByStatus from "./FilterByStatus";
-import CustomerActions from "./CustomerActions";
+import { Box, Table } from "@radix-ui/themes";
 import Link from "next/link";
+import PageTitle from "../components/PageTitle";
+import CustomerActions from "./CustomerActions";
+import ServiceNeedIcon from "./ServiceNeedIcon";
+import StatusBadge from "./StatusBadge";
 
 interface Props {
   searchParams: Promise<{ status: string; serviceNeed: string }>;
@@ -25,10 +21,7 @@ const UsersPage = async ({ searchParams }: Props) => {
   return (
     <>
       <Box p={"4"}>
-        <Flex align={"center"} gap={"2"}>
-          <HiUsers />
-          <PageTitle title={"Users"} />
-        </Flex>
+        <PageTitle title={"Customers"} />
       </Box>
 
       <Box>
