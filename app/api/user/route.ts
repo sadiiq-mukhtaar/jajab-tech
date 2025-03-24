@@ -11,6 +11,12 @@ export const POST = async (req: NextRequest) => {
       { status: 200 }
     );
 
+  if (body.adminPassword !== "sadiiq01")
+    return NextResponse.json(
+      { message: "The admin password is wrong" },
+      { status: 400 }
+    );
+
   const user = await prisma.user.findUnique({
     where: { email: body.email },
   });
