@@ -7,6 +7,7 @@ import { FiLogOut } from "react-icons/fi";
 import { LuUsersRound } from "react-icons/lu";
 import { MdDashboard } from "react-icons/md";
 import Spinner from "./components/Spinner";
+import { IoPersonAddSharp } from "react-icons/io5";
 
 const NavBarSmallScreen = () => {
   const { status } = useSession();
@@ -20,6 +21,9 @@ const NavBarSmallScreen = () => {
           </Link>
           <Link href="/customers">
             <LuUsersRound className="text-xl" />
+          </Link>
+          <Link href="/register">
+            <IoPersonAddSharp className="text-xl" />
           </Link>
           {status === "authenticated" && (
             <Link href="/api/auth/signout">

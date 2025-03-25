@@ -14,6 +14,7 @@ const NavBar = () => {
   const current = usePathname();
   const dashboardExpression = current === "/dashboard";
   const customersExpression = current === "/customers";
+  const registerExpression = current === "/register";
   const dashboardStyle = {
     "bg-[#4D55CC]": dashboardExpression,
     "font-semibold": true,
@@ -28,6 +29,14 @@ const NavBar = () => {
     "px-2": customersExpression,
     "py-1": customersExpression,
     "rounded-sm": customersExpression,
+  };
+
+  const registerStyle = {
+    "bg-[#4D55CC]": registerExpression,
+    "font-semibold": true,
+    "px-2": registerExpression,
+    "py-1": registerExpression,
+    "rounded-sm": registerExpression,
   };
 
   return (
@@ -54,8 +63,16 @@ const NavBar = () => {
               align={"center"}
               gap={"2"}
               className={classnames(customerStyle)}
+              mb={"6"}
             >
               <HiUsers /> <Link href={"/customers"}>Customers</Link>
+            </Flex>
+            <Flex
+              align={"center"}
+              gap={"2"}
+              className={classnames(registerStyle)}
+            >
+              <HiUsers /> <Link href={"/register"}>Register</Link>
             </Flex>
           </Box>
         </Box>

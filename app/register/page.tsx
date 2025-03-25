@@ -120,7 +120,7 @@ const SignPage = () => {
         <Text className="text-white">
           Don't have an account?{" "}
           <Link href="/api/auth/signin" className="underline ">
-            Sign up for free
+            Sign In
           </Link>
         </Text>
       </Flex>
