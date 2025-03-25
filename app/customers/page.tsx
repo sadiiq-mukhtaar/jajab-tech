@@ -13,7 +13,7 @@ interface Props {
 
 const UsersPage = async ({ searchParams }: Props) => {
   const { status, serviceNeed, page } = await searchParams;
-  const currentPage = parseInt(page);
+  const currentPage = parseInt(page) || 1;
   const pageSize = 10;
 
   const totalCount = await prisma.customer.count({});
