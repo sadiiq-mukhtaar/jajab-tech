@@ -5,6 +5,7 @@ import PageTitle from "../components/PageTitle";
 import CustomerActions from "./CustomerActions";
 import ServiceNeedIcon from "./ServiceNeedIcon";
 import StatusBadge from "./StatusBadge";
+import Pagination from "./Pagination";
 
 interface Props {
   searchParams: Promise<{ status: string; serviceNeed: string }>;
@@ -71,6 +72,7 @@ const UsersPage = async ({ searchParams }: Props) => {
           ))}
         </Table.Body>
       </Table.Root>
+      <Pagination totalCount={100} currentPage={4} pageSize={10} />
     </>
   );
 };
