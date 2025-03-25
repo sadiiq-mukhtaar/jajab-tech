@@ -11,7 +11,7 @@ const DeletingPage = () => {
   const router = useRouter();
   const handleDelete = async () => {
     try {
-      const response = await axios.delete("/api/customer/" + id);
+      await axios.delete("/api/customer/" + id);
       toast.success("You have successfull deleted");
       router.push("/customers");
     } catch (e) {

@@ -9,6 +9,7 @@ import { MdDashboard } from "react-icons/md";
 import Spinner from "./components/Spinner";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
+import { IoPersonAddSharp } from "react-icons/io5";
 const NavBar = () => {
   const { status } = useSession();
   const current = usePathname();
@@ -72,7 +73,8 @@ const NavBar = () => {
               gap={"2"}
               className={classnames(registerStyle)}
             >
-              <HiUsers /> <Link href={"/register"}>Register</Link>
+              <IoPersonAddSharp />
+              <Link href={"/register"}>Register</Link>
             </Flex>
           </Box>
         </Box>
@@ -85,7 +87,7 @@ const NavBar = () => {
           )}
           {status === "loading" && <Spinner />}
           {status === "unauthenticated" && (
-            <Link href={"/api/auth/signout"} className="font-semibold">
+            <Link href={"/api/auth/signin"} className="font-semibold">
               Sign In
             </Link>
           )}

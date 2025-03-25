@@ -5,10 +5,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   const customers = await prisma.customer.findMany({});
+  const body = req.json();
 
   if (!customers)
     return NextResponse.json(
-      { message: "the customer is not exist" },
+      { message: "the customer is not exist", data: body },
       { status: 400 }
     );
 
@@ -51,7 +52,7 @@ export const POST = async (req: NextRequest) => {
   }
 
   // Create a new customer
-  const newUser = await prisma.customer.create({
+  await prisma.customer.create({
     data: {
       firstName: body.firstName,
       lastName: body.lastName,

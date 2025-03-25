@@ -29,7 +29,7 @@ export const POST = async (req: NextRequest) => {
 
   const hashPassword = bcyrpt.hashSync(body.password, 10);
 
-  const newUser = await prisma.user.create({
+  await prisma.user.create({
     data: {
       name: body.name,
       email: body.email,

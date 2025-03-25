@@ -4,7 +4,7 @@ import { Flex, Heading, Text } from "@radix-ui/themes";
 import axios, { AxiosError } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { z } from "zod";
@@ -30,19 +30,17 @@ const SignPage = () => {
     resolver: zodResolver(createUserSchema),
   });
 
-  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const onSubmit = () => {
     return handleSubmit(async (data) => {
       try {
-        setLoading(true);
         const res = await axios.post("/api/user", data);
         if (res.status === 201) toast.success("you have sucessfully created");
-
-        router.push("/api/auth/signin");
+        setTimeout(() => router.push("/api/auth/signin"), 2000);
       } catch (error) {
-        if (error instanceof AxiosError)
+        if (error instanceof AxiosError) {
           toast.error(error.response?.data.message);
+        }
       }
     });
   };
@@ -112,13 +110,13 @@ const SignPage = () => {
               </Text>
             )}
             <button className="w-full py-2 rounded-lg bg-[#211C84] cursor-pointer mt-4">
-              <span className="text-white">Sign In</span>
+              <span className="text-white">register</span>
             </button>
           </form>
         </Flex>
 
         <Text className="text-white">
-          Don't have an account?{" "}
+          have an account?{" "}
           <Link href="/api/auth/signin" className="underline ">
             Sign In
           </Link>

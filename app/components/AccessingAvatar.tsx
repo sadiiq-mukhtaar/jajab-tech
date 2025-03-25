@@ -11,10 +11,11 @@ const AccessingAvatar = () => {
     <Box>
       {status === "authenticated" && (
         <Avatar
-          src={session?.user?.image!}
+          src={session.user!.image!}
           fallback="?"
           radius="full"
           size={"2"}
+          referrerPolicy="no-referrer"
         />
       )}
       {status === "unauthenticated" && (

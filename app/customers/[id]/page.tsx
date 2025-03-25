@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma/client";
-import { Box, Flex, Text, Button } from "@radix-ui/themes";
+import { Box, Flex, Text } from "@radix-ui/themes";
 import ServiceNeedIcon from "../ServiceNeedIcon";
 import StatusBadge from "../StatusBadge";
 import CustomerButtons from "./CustomerButtons";

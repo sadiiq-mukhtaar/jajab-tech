@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { MdDashboard } from "react-icons/md";
 import { HiUsers } from "react-icons/hi";
 
-const PageTitle = ({ title }: { title: String }) => {
+const PageTitle = ({ title }: { title: string }) => {
   const currentPage = usePathname();
   return (
     <Flex justify={"between"} align={"center"}>

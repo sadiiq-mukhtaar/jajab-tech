@@ -1,5 +1,3 @@
-import { prisma } from "@/prisma/client";
-import { Customer } from "@prisma/client";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";
