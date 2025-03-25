@@ -8,16 +8,22 @@ import StatusBadge from "./StatusBadge";
 import Pagination from "./Pagination";
 
 interface Props {
-  searchParams: Promise<{ status: string; serviceNeed: string }>;
+  searchParams: Promise<{ status: string; serviceNeed: string; page: string }>;
 }
 
 const UsersPage = async ({ searchParams }: Props) => {
-  const { status, serviceNeed } = await searchParams;
+  const { status, serviceNeed, page } = await searchParams;
+  const currentPage = parseInt(page);
+  const pageSize = 10;
+
+  const totalCount = await prisma.customer.count({});
   const customers = await prisma.customer.findMany({
     where: {
       seviceStatus: status || undefined,
       serviceNeed: serviceNeed || undefined,
     },
+    take: pageSize,
+    skip: (currentPage - 1) * pageSize,
   });
   return (
     <>
@@ -72,7 +78,11 @@ const UsersPage = async ({ searchParams }: Props) => {
           ))}
         </Table.Body>
       </Table.Root>
-      <Pagination totalCount={100} currentPage={4} pageSize={10} />
+      <Pagination
+        totalCount={totalCount}
+        currentPage={currentPage}
+        pageSize={pageSize}
+      />
     </>
   );
 };
