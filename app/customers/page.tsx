@@ -6,6 +6,7 @@ import CustomerActions from "./CustomerActions";
 import ServiceNeedIcon from "./ServiceNeedIcon";
 import StatusBadge from "./StatusBadge";
 import Pagination from "./Pagination";
+import { Metadata } from "next";
 
 interface Props {
   searchParams: Promise<{ status: string; serviceNeed: string; page: string }>;
@@ -85,6 +86,12 @@ const UsersPage = async ({ searchParams }: Props) => {
       />
     </>
   );
+};
+
+export const metadata: Metadata = {
+  title: "Customers | Manage Your Client Base",
+  description:
+    "View , and manage all customer records. Track interactions, update details, and analyze customer relationships in one centralized platform.",
 };
 
 export default UsersPage;

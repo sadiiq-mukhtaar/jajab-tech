@@ -45,6 +45,8 @@ const DashboardPage = async () => {
 
 export const metadata: Metadata = {
   title: "Customer Manager - Dashboard",
+  description:
+    "Efficiently manage your customer relationships, track interactions, and analyze customer data with our comprehensive dashboard.",
 };
 
 export const dynamic = "force-dynamic";
