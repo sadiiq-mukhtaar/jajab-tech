@@ -1,4 +1,5 @@
 "use client";
+
 import { Flex, Heading } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -16,7 +17,7 @@ const NavBarSmallScreen = () => {
       <Flex justify="between" align="center">
         <Heading>JaJab Tech</Heading>
         <Flex gap="4" align="center">
-          <Link href="/dashboard">
+          <Link href="/">
             <MdDashboard className="text-xl" />
           </Link>
           <Link href="/customers">

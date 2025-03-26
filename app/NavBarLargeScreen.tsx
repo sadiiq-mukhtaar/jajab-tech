@@ -1,4 +1,5 @@
 "use client";
+
 import { Flex, Box, Heading } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -13,7 +14,7 @@ import { IoPersonAddSharp } from "react-icons/io5";
 const NavBar = () => {
   const { status } = useSession();
   const current = usePathname();
-  const dashboardExpression = current === "/dashboard";
+  const dashboardExpression = current === "/";
   const customersExpression = current === "/customers";
   const registerExpression = current === "/register";
   const dashboardStyle = {
@@ -58,7 +59,7 @@ const NavBar = () => {
               mb={"6"}
               className={classnames(dashboardStyle)}
             >
-              <MdDashboard /> <Link href={"/dashboard"}>Dashboard</Link>
+              <MdDashboard /> <Link href={"/"}>Dashboard</Link>
             </Flex>
             <Flex
               align={"center"}
